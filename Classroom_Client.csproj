@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\main.cs" />
+    <Compile Include="src\Main.cs" />
     <Compile Include="src\ClassroomResolver.cs" />
     <Compile Include="src\ClassroomData.cs" />
     <Compile Include="src\Utils\Coroutines.cs" />
