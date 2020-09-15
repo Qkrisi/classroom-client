@@ -37,7 +37,6 @@ namespace Classroom_Client
             var AnnouncementResponse = Requests.AnnouncementRequest.Execute();
             if (AnnouncementResponse.Announcements != null)
             {
-                System.Console.WriteLine("ITS NOT NULL!!!!!!!A");
                 foreach (var announcement in AnnouncementResponse.Announcements)
                 {
                     if (!Announcements.Any(a => a.Id == announcement.Id))
@@ -65,7 +64,6 @@ namespace Classroom_Client
         public RequestBatch(string ID)
         {
             CourseWorkRequest = WorkResourceHanlder.List(ID);
-            CourseWorkRequest.PageSize = 10;
             AnnouncementRequest = AnnouncementResourceHandler.List(ID);
         }
     }
