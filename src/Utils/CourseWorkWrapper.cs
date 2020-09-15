@@ -14,12 +14,16 @@ namespace Classroom_Client
 
         public void Update(bool alert = true)
         {
-            foreach (var submission in SubmissionResourceHandler.List(Work.CourseId, Work.Id).Execute().StudentSubmissions)
+            var SubmissionResponse = SubmissionResourceHandler.List(Work.CourseId, Work.Id).Execute();
+            if (SubmissionResponse.StudentSubmissions != null)
             {
-                if (!Submissions.Any(s => s.Submission.Id == submission.Id))
+                foreach (var submission in SubmissionResponse.StudentSubmissions)
                 {
-                    Submissions.Add(new SubmissionWrapper(submission));
-                    if(alert) Notify($"New submission in {Work.Title}!");
+                    if (!Submissions.Any(s => s.Submission.Id == submission.Id))
+                    {
+                        Submissions.Add(new SubmissionWrapper(submission));
+                        if (alert) Notify($"New submission in {Work.Title}!");
+                    }
                 }
             }
         }
