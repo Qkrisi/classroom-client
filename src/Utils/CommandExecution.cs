@@ -6,6 +6,7 @@ namespace Classroom_Client
     {
         public static string ExecuteBashCommand(string command)
         {
+            System.Console.WriteLine($"Executing command: {command}");
             command = command.Replace("\"", "\"\"");
 
             var proc = new Process

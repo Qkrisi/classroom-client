@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using Google.Apis.Classroom.v1;
 using static Google.Apis.Classroom.v1.CoursesResource;
 using static Classroom_Client.Utils;
+using static Classroom_Client.ClassroomResolver;
 
 namespace Classroom_Client
 {
@@ -30,6 +32,7 @@ namespace Classroom_Client
 
         public static void Update(bool alert = true)
         {
+            System.Console.Write(alert);
             var response = ListCourseHandler.Execute();
             if(response.Courses!=null)
             {
@@ -39,7 +42,7 @@ namespace Classroom_Client
                     CourseWrapper CurrentWrapper = CurrentCourse.Count() == 0 ? null : CurrentCourse.First();
                     if(CurrentWrapper==null)
                     {
-                        if(alert) Notify($"New course found: {course.Id}");
+                        if(alert) Notify($"New course found: {course.Name}");
                         CurrentWrapper = new CourseWrapper(course);
                         Courses.Add(CurrentWrapper);
                     }
@@ -48,6 +51,19 @@ namespace Classroom_Client
                         CurrentWrapper.Update(alert);
                     }
                 }
+            }
+        }
+
+        private static MainWindow _instance = null;
+        public static MainWindow Instance
+        {
+            get => _instance;
+            set
+            {
+                _instance?.Close();
+                Resolve();
+                _instance = value;
+                Application.Run(Instance);
             }
         }
     }

@@ -4,6 +4,7 @@ using Google.Apis.Classroom.v1.Data;
 using static Google.Apis.Classroom.v1.CoursesResource;
 using static Classroom_Client.ClassroomData;
 using static Classroom_Client.Utils;
+using static Classroom_Client.Settings;
 
 namespace Classroom_Client
 {
@@ -18,25 +19,32 @@ namespace Classroom_Client
         public void Update(bool alert = true)
         {
             var WorkResponse = Requests.CourseWorkRequest.Execute();
-            foreach(var courseWork in WorkResponse.CourseWork)
+            if (WorkResponse.CourseWork != null)
             {
-                if(!Assignments.Any(a => a.Work.Id == courseWork.Id))
+                foreach (var courseWork in WorkResponse.CourseWork)
                 {
-                    Assignments.Add(new CourseWorkWrapper(courseWork));
-                    if(alert) Notify($"New assigment in {course.Name}: {courseWork.Title}");
-                }
-                else
-                {
-                    Assignments.Where(a => a.Work.Id == courseWork.Id).First().Update(alert);
+                    if (!Assignments.Any(a => a.Work.Id == courseWork.Id))
+                    {
+                        Assignments.Add(new CourseWorkWrapper(courseWork));
+                        if (alert) Notify($"New assigment in {course.Name}: {courseWork.Title}");
+                    }
+                    else
+                    {
+                        Assignments.Where(a => a.Work.Id == courseWork.Id).First().Update(alert);
+                    }
                 }
             }
             var AnnouncementResponse = Requests.AnnouncementRequest.Execute();
-            foreach(var announcement in AnnouncementResponse.Announcements)
+            if (AnnouncementResponse.Announcements != null)
             {
-                if(!Announcements.Any(a => a.Id == announcement.Id))
+                System.Console.WriteLine("ITS NOT NULL!!!!!!!A");
+                foreach (var announcement in AnnouncementResponse.Announcements)
                 {
-                    Announcements.Add(announcement);
-                    if(alert) Notify($"New announcement in {course.Name}!");
+                    if (!Announcements.Any(a => a.Id == announcement.Id))
+                    {
+                        Announcements.Add(announcement);
+                        if (alert) Notify($"New announcement in {course.Name}!");
+                    }
                 }
             }
         }
@@ -45,7 +53,7 @@ namespace Classroom_Client
         {
             course = _course;
             Requests = new RequestBatch(course.Id);
-            Update(false);
+            Update(settings.DefaultNotificatons);
         }
     }
 
@@ -57,6 +65,7 @@ namespace Classroom_Client
         public RequestBatch(string ID)
         {
             CourseWorkRequest = WorkResourceHanlder.List(ID);
+            CourseWorkRequest.PageSize = 10;
             AnnouncementRequest = AnnouncementResourceHandler.List(ID);
         }
     }

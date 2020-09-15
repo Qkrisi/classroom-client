@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using static Classroom_Client.ClassroomResolver;
+﻿using static Classroom_Client.ClassroomData;
 
 namespace Classroom_Client
 {
@@ -8,8 +6,7 @@ namespace Classroom_Client
     {
         public static void Main(string[] args)
         {
-            Settings.RefreshSettings();
-            Resolve();
+            Instance = new MainWindow(null);
         }
     }
 }

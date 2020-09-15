@@ -10,6 +10,7 @@ namespace Classroom_Client
         public class ProgramSettings
         {
             public string AuthPath { get; set; }
+            public bool DefaultNotificatons { get; set; }
         }
 
         public static ProgramSettings settings;
@@ -21,7 +22,8 @@ namespace Classroom_Client
             {
                 settings = new ProgramSettings()
                 {
-                    AuthPath = GetAuthPath()
+                    AuthPath = GetAuthPath(),
+                    DefaultNotificatons = true
                 };
                 File.WriteAllText(SettingsPath, JsonConvert.SerializeObject(settings));
             }

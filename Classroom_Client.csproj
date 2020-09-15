@@ -31,6 +31,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
     <Reference Include="Google.Apis.Auth">
       <HintPath>external\Google.Apis.Auth.dll</HintPath>
     </Reference>
@@ -60,14 +61,19 @@
     <Compile Include="src\Utils\CommandExecution.cs" />
     <Compile Include="src\ProgramSettings.cs" />
     <Compile Include="src\Utils\CourseWorkWrapper.cs" />
+    <Compile Include="src\Dialogue\MainWindow.cs" />
+    <Compile Include="src\Dialogue\MainWindow.Designer.cs" />
+    <Compile Include="src\Dialogue\MainWindowHandler.cs" />
+    <Compile Include="src\Dialogue\UIElements\LinkedButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="external\" />
     <Folder Include="src\Utils\" />
     <Folder Include="src\Dialogue\" />
-    <Folder Include="src\Dialogue\Render\" />
-    <Folder Include="src\Dialogue\Handler\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Images\" />
+    <Folder Include="src\Dialogue\UIElements\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

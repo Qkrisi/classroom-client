@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Google.Apis.Classroom.v1.Data;
 using static Classroom_Client.ClassroomData;
 using static Classroom_Client.Utils;
+using static Classroom_Client.Settings;
 
 namespace Classroom_Client
 {
@@ -26,7 +27,7 @@ namespace Classroom_Client
         public CourseWorkWrapper(CourseWork work)
         {
             Work = work;
-            Update(false);
+            Update(settings.DefaultNotificatons);
         }
     }
     public class SubmissionWrapper

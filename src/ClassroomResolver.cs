@@ -24,6 +24,8 @@ namespace Classroom_Client
 
         public static void Resolve()
         {
+            RefreshSettings();
+
             UserCredential credential;
 
             using (var stream =
@@ -42,7 +44,7 @@ namespace Classroom_Client
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-            ClassroomData.Update(false);
+            ClassroomData.Update(settings.DefaultNotificatons);
         }
     }
 }
