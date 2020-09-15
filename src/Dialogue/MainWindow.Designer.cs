@@ -19,7 +19,7 @@ namespace Classroom_Client
             this.button1 = new System.Windows.Forms.Button();
             // 
             // button1
-            // 
+            //
             this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.button1.Text = "button1";

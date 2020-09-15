@@ -65,6 +65,7 @@
     <Compile Include="src\Dialogue\MainWindow.Designer.cs" />
     <Compile Include="src\Dialogue\MainWindowHandler.cs" />
     <Compile Include="src\Dialogue\UIElements\LinkedButton.cs" />
+    <Compile Include="src\Dialogue\UIElements\CourseButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />

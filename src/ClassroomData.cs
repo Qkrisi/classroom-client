@@ -30,9 +30,11 @@ namespace Classroom_Client
         public static List<CourseWrapper> Courses = new List<CourseWrapper>();
         public static ListRequest ListCourseHandler = null;
 
+
+        private static List<CourseWrapper> CourseQueue = new List<CourseWrapper>();
         public static void Update(bool alert = true)
         {
-            System.Console.Write(alert);
+            CourseQueue.Clear();
             var response = ListCourseHandler.Execute();
             if(response.Courses!=null)
             {
@@ -45,6 +47,7 @@ namespace Classroom_Client
                         if(alert) Notify($"New course found: {course.Name}");
                         CurrentWrapper = new CourseWrapper(course);
                         Courses.Add(CurrentWrapper);
+                        CourseQueue.Add(CurrentWrapper);
                     }
                     else
                     {
@@ -63,6 +66,7 @@ namespace Classroom_Client
                 _instance?.Close();
                 Resolve();
                 _instance = value;
+                foreach (var queued in CourseQueue) Instance.CreateCourseButton(queued);
                 Application.Run(Instance);
             }
         }
