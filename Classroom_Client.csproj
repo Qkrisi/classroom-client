@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{F6646279-1CE6-4782-80D2-99EBC7B14573}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Classroom_Client</RootNamespace>
+    <AssemblyName>Classroom_Client</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Google.Apis.Auth">
+      <HintPath>external\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices">
+      <HintPath>external\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Classroom.v1">
+      <HintPath>external\Google.Apis.Classroom.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core">
+      <HintPath>external\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis">
+      <HintPath>external\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>external\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Main.cs" />
+    <Compile Include="src\ClassroomResolver.cs" />
+    <Compile Include="src\ClassroomData.cs" />
+    <Compile Include="src\Utils\Coroutines.cs" />
+    <Compile Include="src\Utils\CourseWrapper.cs" />
+    <Compile Include="src\Utils\CommandExecution.cs" />
+    <Compile Include="src\ProgramSettings.cs" />
+    <Compile Include="src\Utils\CourseWorkWrapper.cs" />
+    <Compile Include="src\Dialogue\MainWindow.cs" />
+    <Compile Include="src\Dialogue\MainWindow.Designer.cs" />
+    <Compile Include="src\Dialogue\MainWindowHandler.cs" />
+    <Compile Include="src\Dialogue\UIElements\LinkedButton.cs" />
+    <Compile Include="src\Dialogue\UIElements\CourseButton.cs" />
+    <Compile Include="src\Dialogue\Loader\Loader.Designer.cs" />
+    <Compile Include="src\Dialogue\Loader\LoaderHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="external\" />
+    <Folder Include="src\Utils\" />
+    <Folder Include="src\Dialogue\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Images\" />
+    <Folder Include="src\Dialogue\UIElements\" />
+    <Folder Include="src\Dialogue\Loader\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
