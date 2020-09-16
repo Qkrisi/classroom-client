@@ -66,6 +66,8 @@
     <Compile Include="src\Dialogue\MainWindowHandler.cs" />
     <Compile Include="src\Dialogue\UIElements\LinkedButton.cs" />
     <Compile Include="src\Dialogue\UIElements\CourseButton.cs" />
+    <Compile Include="src\Dialogue\Loader\Loader.Designer.cs" />
+    <Compile Include="src\Dialogue\Loader\LoaderHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -75,6 +77,7 @@
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="src\Dialogue\UIElements\" />
+    <Folder Include="src\Dialogue\Loader\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
