@@ -68,6 +68,7 @@
     <Compile Include="src\Dialogue\UIElements\CourseButton.cs" />
     <Compile Include="src\Dialogue\Loader\Loader.Designer.cs" />
     <Compile Include="src\Dialogue\Loader\LoaderHandler.cs" />
+    <Compile Include="src\Utils\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />

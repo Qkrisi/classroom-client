@@ -2,7 +2,7 @@
 
 namespace Classroom_Client
 {
-    public partial class Utils
+    internal static partial class Utils
     {
         public static string ExecuteBashCommand(string command)
         {

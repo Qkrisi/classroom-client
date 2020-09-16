@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Classroom_Client
 {
     #region Coroutine Functions
-    public partial class Utils
+    internal static partial class Utils
     {
         public static object[] StartValuedCoroutine(IEnumerator Coroutine) => StartCoroutineInternal(Coroutine, (v) => { });
         public static void StartCoroutine(IEnumerator Coroutine) => new ThreadWrapper(() => StartCoroutineInternal(Coroutine, (v) => { }), Coroutine).Start();

@@ -9,7 +9,7 @@
             set
             {
                 _percentage = value;
-                label1.Text = $"Loading... {Percentage}%";
+                label1.Text = $"Loading... {(int)Percentage}%";
             }
         }
 
