@@ -27,6 +27,6 @@ namespace Classroom_Client
             return proc.StandardOutput.ReadToEnd();
         }
 
-        public static string Notify(string text) => ExecuteBashCommand($"zenity --notification --text={'"'}{text}{'"'}");
+        public static string Notify(string text) => ExecuteBashCommand($"zenity --notification --text=\"{text}\"");
     }
 }

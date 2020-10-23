@@ -4,6 +4,7 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using System.IO;
 using System.Threading;
+using Google.Apis.Drive.v3;
 using static Google.Apis.Classroom.v1.ClassroomService;
 using static Classroom_Client.Settings;
 
@@ -17,7 +18,8 @@ namespace Classroom_Client
             Scope.ClassroomAnnouncementsReadonly,
             Scope.ClassroomCourseworkMe,
             Scope.ClassroomStudentSubmissionsMeReadonly,
-            Scope.ClassroomTopicsReadonly
+            Scope.ClassroomTopicsReadonly,
+            DriveService.Scope.Drive
         };
 
         static readonly string ApplicationName = "Classroom Client";
@@ -27,7 +29,7 @@ namespace Classroom_Client
             RefreshSettings();
 
             UserCredential credential;
-
+            
             using (var stream =
                 new FileStream(settings.AuthPath, FileMode.Open, FileAccess.Read))
             {
@@ -39,11 +41,15 @@ namespace Classroom_Client
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
             }
-            ClassroomData.Service = new ClassroomService(new BaseClientService.Initializer()
+
+            var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
+                ApplicationName = ApplicationName
+            };
+            
+            ClassroomData.Service = new ClassroomService(initializer);
+            DriveHandler.driveService = new DriveService(initializer);
             ClassroomData.Update(settings.DefaultNotificatons);
         }
     }

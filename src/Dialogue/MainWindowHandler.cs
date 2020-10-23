@@ -17,13 +17,12 @@ namespace Classroom_Client
         }
 
         public void OpenCourse(string ID)
-        {
-            
+        {  
         }
 
         public void CreateCourseButton(CourseWrapper course)
         {
-            CourseY += (CourseButtons.Count > 0 ? CourseButtons[CourseButtons.Count-1].Height : 0) + 10;
+            CourseY += CourseButtons.Count > 0 ? CourseButtons[CourseButtons.Count-1].Height + 10 : 0;
             var button = new CourseButton(course, CourseY);
             CoursesPanel.Controls.Add(button);
             CourseButtons.Add(button);

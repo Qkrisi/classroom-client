@@ -32,8 +32,19 @@ namespace Classroom_Client
         public static List<CourseWrapper> Courses = new List<CourseWrapper>();
         public static ListRequest ListCourseHandler = null;
 
+        private static CourseWrapper _CurrentCourse = null;
+        public static CourseWrapper CurrentCourse
+        {
+            get => _CurrentCourse;
+            set
+            {
+                _CurrentCourse = value;
+                Instance.OpenCourse(CurrentCourse.course.Id);
+            }
+        }
 
-        private static List<CourseWrapper> CourseQueue = new List<CourseWrapper>();
+
+        private static Queue<CourseWrapper> CourseQueue = new Queue<CourseWrapper>();
 
         private static bool _Done = false;
         public static void Update(bool alert = true)
@@ -54,7 +65,7 @@ namespace Classroom_Client
                         if(alert) Notify($"New course found: {course.Name}");
                         CurrentWrapper = new CourseWrapper(course);
                         Courses.Add(CurrentWrapper);
-                        CourseQueue.Add(CurrentWrapper);
+                        CourseQueue.Enqueue(CurrentWrapper);
                     }
                     else
                     {
@@ -79,7 +90,7 @@ namespace Classroom_Client
                 StartCoroutine(Fetch());
                 Application.Run(loader);
                 if (!_Done) throw new ApplicationException("Closed app too early");
-                foreach (var queued in CourseQueue) Instance.CreateCourseButton(queued);
+                while(CourseQueue.Count > 0) Instance.CreateCourseButton(CourseQueue.Dequeue());
                 Application.Run(Instance);
             }
         }
